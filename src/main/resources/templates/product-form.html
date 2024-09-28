@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 data-th-text="${product.productID != null} ? 'Edit Product' : 'Add Product'">Add/Edit Product</h1>
+    <form data-th-action="@{/products}" data-th-object="${product}" method="post">
+        <input type="hidden" data-th-field="*{productID}"/>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" data-th-field="*{name}" class="form-control" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" data-th-field="*{category}" class="form-control" id="category" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" data-th-field="*{price}" class="form-control" id="price" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" data-th-field="*{quantity}" class="form-control" id="quantity" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

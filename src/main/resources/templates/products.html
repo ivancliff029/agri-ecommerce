@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Product Catalog</h1>
+    <a data-th-href="@{/products/new}" class="btn btn-primary mb-3">Add New Product</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-th-each="product : ${products}">
+                <td data-th-text="${product.productID}">ID</td>
+                <td data-th-text="${product.name}">Name</td>
+                <td data-th-text="${product.category}">Category</td>
+                <td data-th-text="${product.price}">Price</td>
+                <td data-th-text="${product.quantity}">Quantity</td>
+                <td>
+                    <a data-th-href="@{/products/{id}(id=${product.productID})}" class="btn btn-info">View</a>
+                    <a data-th-href="@{/products/edit/{id}(id=${product.productID})}" class="btn btn-warning">Edit</a>
+                    <a data-th-href="@{/products/delete/{id}(id=${product.productID})}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
