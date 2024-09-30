@@ -53,4 +53,19 @@ public class ProductService {
     public void deleteProduct(Long productId) {
         productRepository.deleteById(productId);
     }
+
+    // Method to update product quantity
+    public void updateProductQuantity(Long productId, int quantityChange) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
+
+        int updatedQuantity = product.getQuantity() + quantityChange;
+
+        if (updatedQuantity < 0) {
+            throw new IllegalStateException("Insufficient stock to fulfill the request.");
+        }
+
+        product.setQuantity(updatedQuantity);
+        productRepository.save(product);
+    }
 }
